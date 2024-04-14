@@ -47,9 +47,6 @@ function formatDate(date) {
 
     let formattedDay = days[day];
     return `${formattedDay} ${hours}:${minutes}`;
-  
-  //let day = date.getDay();
-
   }
 
 
@@ -63,7 +60,7 @@ function handleSearchSubmit(event) {
 function getForecast(city){
   let apiKey = "13d2ee51f9b4o75695t30ad14de90637";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`
-//console.log(apiUrl);
+
 axios.get(apiUrl).then(displayForecast);
 }
 
@@ -78,7 +75,7 @@ function displayForecast (response){
   console.log(response.data);
   let forecastElement = document.querySelector("#forecast")
 
-  //let days = [`Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat`, `Sun`]
+  
   let forecastHtml = "";
 
   response.data.daily.forEach(function(day, index) { 
@@ -113,17 +110,14 @@ forecastElement.innerHTML = forecastHtml;
 
 }
 function searchCity(city) {
-  //event.preventDefault();
-  //let searchInputElement = document.querySelector("#search-input");
-  //let cityElement = document.querySelector("#current-city");
-  //let city = searchInputElement.value;
+  
 
   let apiKey = "13d2ee51f9b4o75695t30ad14de90637";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
-  //cityElement.innerHTML = searchInputElement.value;
+  
   axios.get(apiUrl).then(displayTemperature);
-  //cityElement.innerHTML = city;
+
 }
 
 let searchFormElement = document.querySelector("#search-form");
@@ -131,3 +125,4 @@ searchFormElement.addEventListener("submit", handleSearchSubmit);
 searchCity("Carletonville");
 
 displayForecast();
+setInterval(updateTime, 60000);
